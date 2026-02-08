@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Habit Tracker - Track your daily habits with discipline">
+    <title>Habit Tracker - Daily Discipline System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">📊</span>
+            <span class="nav-title">Habit Tracker</span>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="countdown-timer" id="countdown-timer">
+            <div class="timer-icon">⏱️</div>
+            <div class="timer-content">
+                <span class="timer-label">Time Left Today</span>
+                <span class="timer-value" id="timer-value">--:--:--</span>
+            </div>
+            <div class="timer-progress" id="timer-progress">
+                <div class="timer-bar" id="timer-bar"></div>
+            </div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link" data-page="dashboard">Dashboard</a></li>
+            <li><a href="#" class="nav-link active" data-page="tracker">Daily Tracker</a></li>
+            <li><a href="#" class="nav-link" data-page="money-market">Money Market</a></li>
+            <li><a href="#" class="nav-link" data-page="progress">Progress</a></li>
+            <li><a href="#" class="nav-link" data-page="settings">Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page: Dashboard -->
+        <section id="page-dashboard" class="page hidden">
+            <div class="dashboard-container">
+                <h1 class="page-title">Dashboard Overview</h1>
+                <div class="dashboard-stats" id="dashboard-stats">
+                    <!-- Stats loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Daily Tracker (Main Grid View) -->
+        <section id="page-tracker" class="page">
+            <!-- Header Section -->
+            <div class="tracker-header">
+                <div class="tracker-title-section">
+                    <div class="tracker-title-box">
+                        <h1 class="tracker-main-title">HABIT TRACKER</h1>
+                        <div class="tracker-month-display" id="current-month-display">- January -</div>
+                    </div>
+                </div>
+                <div class="tracker-controls">
+                    <div class="calendar-settings">
+                        <div class="settings-label">CALENDER SETTINGS</div>
+                        <div class="settings-row">
+                            <span class="setting-key">YEAR</span>
+                            <select id="year-select" class="setting-select">
+                                <!-- Generated dynamically -->
+                            </select>
+                        </div>
+                        <div class="settings-row">
+                            <span class="setting-key">MONTH</span>
+                            <select id="month-select" class="setting-select">
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Progress Chart -->
+                <div class="progress-chart-container" id="progress-chart-container">
+                    <canvas id="progress-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Overview & Weekly Headers -->
+            <div class="grid-container">
+                <!-- Overview Section -->
+                <div class="overview-section">
+                    <div class="overview-header">
+                        <span class="overview-title">OVERVIEW</span>
+                    </div>
+                    <div class="overview-row overall-progress-label">
+                        <span>OVERALL PROGRESS</span>
+                    </div>
+                    <div class="overview-stats">
+                        <div class="stat-row completed-row">
+                            <span class="stat-label">COMPLETED</span>
+                            <div class="stat-values" id="completed-stats">
+                                <!-- Dynamically generated -->
+                            </div>
+                        </div>
+                        <div class="stat-row goal-row">
+                            <span class="stat-label">GOAL</span>
+                            <div class="stat-values" id="goal-stats">
+                                <!-- Dynamically generated -->
+                            </div>
+                        </div>
+                        <div class="stat-row left-row">
+                            <span class="stat-label">LEFT</span>
+                            <div class="stat-values" id="left-stats">
+                                <!-- Dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overview-row streak-row">
+                        <span>DAILY STREAKS</span>
+                    </div>
+                </div>
+
+                <!-- Weekly Headers -->
+                <div class="weeks-header" id="weeks-header">
+                    <!-- Dynamically generated week headers -->
+                </div>
+            </div>
+
+            <!-- Daily Habits Section -->
+            <div class="daily-habits-section">
+                <div class="daily-habits-header">
+                    <span class="section-title">DAILY HABITS</span>
+                </div>
+                <div class="habits-grid" id="habits-grid">
+                    <!-- Dynamically generated habits grid -->
+                </div>
+            </div>
+
+            <!-- Overall Progress Panel (Right Side) -->
+            <div class="overall-progress-panel" id="overall-progress-panel">
+                <div class="panel-header">OVERALL PROGRESS</div>
+                <div class="panel-stats">
+                    <div class="stat-header-row">
+                        <span class="col-completed">COMPLETED</span>
+                        <span class="col-left">LEFT</span>
+                        <span class="col-percent">%</span>
+                    </div>
+                    <div class="progress-rows" id="progress-rows">
+                        <!-- Dynamically generated -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Money Market -->
+        <section id="page-money-market" class="page hidden">
+            <div class="money-market-container">
+                <h1 class="page-title">💰 Money Market Learning</h1>
+                <p class="page-subtitle">Learn one concept per day - 20 minutes</p>
+
+                <div class="concept-card" id="today-concept">
+                    <!-- Today's concept loaded here -->
+                </div>
+
+                <div class="concepts-progress" id="concepts-progress">
+                    <!-- Progress loaded here -->
+                </div>
+
+                <div class="concepts-list" id="concepts-list">
+                    <!-- All concepts loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Progress -->
+        <section id="page-progress" class="page hidden">
+            <div class="progress-container">
+                <h1 class="page-title">📈 Progress Analytics</h1>
+                <div class="charts-container" id="charts-container">
+                    <!-- Charts loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Settings -->
+        <section id="page-settings" class="page hidden">
+            <div class="settings-container">
+                <h1 class="page-title">⚙️ Settings</h1>
+
+                <div class="settings-section">
+                    <h2>Notification Settings</h2>
+                    <div class="setting-item">
+                        <label for="email-enabled">Email Notifications</label>
+                        <input type="checkbox" id="email-enabled">
+                    </div>
+                    <div class="setting-item">
+                        <label for="email-address">Email Address</label>
+                        <input type="email" id="email-address" placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2>Habit Management</h2>
+                    <button class="btn btn-primary" id="add-habit-btn">+ Add New Habit</button>
+                    <div class="habits-list" id="habits-manage-list">
+                        <!-- Habits management list -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Habit Modal -->
+    <div class="modal hidden" id="add-habit-modal">
+        <div class="modal-content">
+            <h2>Add New Habit</h2>
+            <form id="add-habit-form">
+                <div class="form-group">
+                    <label for="habit-name">Habit Name</label>
+                    <input type="text" id="habit-name" required placeholder="e.g., Read 30 minutes">
+                </div>
+                <div class="form-group">
+                    <label for="habit-goal">Monthly Goal</label>
+                    <input type="number" id="habit-goal" value="30" min="1" max="31">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-habit-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Habit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Warning Notification -->
+    <div class="warning-notification hidden" id="warning-notification">
+        <div class="warning-content">
+            <span class="warning-icon">🚨</span>
+            <div class="warning-text">
+                <strong>URGENT!</strong>
+                <span id="warning-message">Less than 10 minutes remaining!</span>
+            </div>
+            <button class="warning-close" onclick="dismissWarning()">×</button>
+        </div>
+        <div class="warning-progress">
+            <div class="warning-bar" id="warning-bar"></div>
+        </div>
+    </div>
+
+    <!-- Audio for notification (optional) -->
+    <audio id="warning-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRl9vT19teleVBmZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhO09v"
+            type="audio/wav">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
